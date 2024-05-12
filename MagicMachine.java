@@ -3,19 +3,63 @@ import java.util.Random;
 public class MagicMachine {
     public static void main(String[] args) {
     	Scanner scanner = new Scanner(System.in);
-    	String input1 = scanner.nextLine();
-    	String input2 = scanner.nextLine();
+    	System.out.println("Enter the string : ");
+    	String input = scanner.nextLine();
+    	String input1 = input;
+    	System.out.println("Enter the number : ");
     	int n = scanner.nextInt();
     	Random r = new Random(0);
     	int arr[][] = new int[n][n];
+    	String s[][][] = new String[n][n][2];
     	for (int i = 0;i<n;i++) {
     		for(int j =0;j<n;j++) {
     			arr[i][j]=r.nextInt(1,6);
+    			//System.out.print(arr[i][j] + " ");
+    		}
+    		//System.out.println();
+    	}
+    	for(int i =0;i<n;i++) {
+    		input1 = blackFunc(input1,arr[0][i]);
+    		s[0][i][0]=input1;
+    		s[0][i][1]=input1;
+    	}
+    	String input2 = s[0][0][0];
+    	for(int i=1 ; i<n ; i++) {
+    		input2 = blackFunc(input2,arr[i][0]);
+    		s[i][0][0]=input2;
+    		s[i][0][1]=input2;}
+    	//blue_satr
+    	for(int i =1;i<n-1;i++) {
+    		for(int j =1;j<n-1;j++) {
+    			s[i][j][0]=blackFunc(s[i][j-1][0],arr[i][j]);
     		}
     	}
-    	System.out.print(sumString(input1 , input2));
+    	//blue_sotoon
+    	for(int i=1 ; i<n-1 ; i++) {
+    		for(int j =1 ; j<n-1 ; j++) {
+    			s[j][i][1]=blackFunc(s[j-1][i][1],arr[j][i]);
+    		}
+    	}
+    	//pink_sotoon
+    	for(int j=1 ; j<n-1 ; j++) {
+    		s[n-1][j][1]=whiteFunc(s[n-2][j][1],s[n-1][j-1][1],arr[n-1][j]);
+    	}
+    	//pink_sotoon
+    	for(int i =1 ;i<n-1 ; i++) {
+    		s[i][n-1][0]=whiteFunc(s[i-1][n-1][0],s[i][n-2][0],arr[i][n-1]);
+    	}
+    	
+    	/*for(int i =0;i<n;i++) {
+    		for(int j =0;j<n ;j++) {
+    			System.out.print(s[i][j][1]+"     ");
+    		}
+    		System.out.println();}*/
+    	System.out.print(whiteFunc(s[n-1][n-2][1],s[n-2][n-1][0],arr[n-1][n-1]));
 
+    	
     }
+
+
     public static String blackFunc(String str , int arr_ij) {
     	switch(arr_ij) {
     	case 1 :
@@ -40,13 +84,13 @@ public class MagicMachine {
     	case 2 :
     		return concatReversed(str1,str2);
     	case 3 :
-    		return concatReversed(str1,str2);
+    		return everyOtherString(str1,str2);
     	case 4 :
     		return evenOdd(str1,str2);
     	case 5 :
     		return  sumString(str1,str2);
     	default:
-    		return "";
+    		return "tfthjj";
     		}
     	}
     
@@ -186,10 +230,5 @@ public class MagicMachine {
         }
         
         return result.toString();
-    }
-    
-    
-    public static String magicMachineFunction(int n, int[][] array, String input) {
-        return null;
     }
 }
