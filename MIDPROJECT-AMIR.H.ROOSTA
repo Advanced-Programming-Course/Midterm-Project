@@ -140,8 +140,8 @@ public class Main {
             }
         }
 
-
-        System.out.println(grid[n - 1][n - 1]);
+        String outPut = aWF(machine[n - 1][n - 1], grid[n - 1][n - 2], grid[n - 2][n - 1]);
+        System.out.println("Here is What Magic Machine does to the input:\n" + outPut);
     }
 
     public static String aBF(int functionNumber, String input) {
