@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 //Amir Hossein Roosta
-public class Main {
+public class MagicMachine {
 
 
     public static String BF1(String s) {
@@ -107,10 +107,13 @@ public class Main {
             }
             System.out.println();
         }
+          System.out.println(magicMachineFunction(n,machine,inputString));
+    }
 
 
+    public static String magicMachineFunction(int n, int[][] machine, String input) {
         String[][] grid = new String[n][n];
-        grid[0][0] = aBF(machine[0][0], inputString);
+        grid[0][0] = aBF(machine[0][0], input);
 
 
         for (int i = 1; i < n; i++) {
@@ -140,10 +143,10 @@ public class Main {
             }
         }
 
-        String outPut = aWF(machine[n - 1][n - 1], grid[n - 1][n - 2], grid[n - 2][n - 1]);
-        System.out.println("Here is What Magic Machine does to the input:\n" + outPut);
-    }
 
+        String outPut = aWF(machine[n - 1][n - 1], grid[n - 1][n - 2], grid[n - 2][n - 1]);
+        return outPut;
+    }
     public static String aBF(int functionNumber, String input) {
         switch (functionNumber) {
             case 1:
