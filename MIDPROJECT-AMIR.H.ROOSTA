@@ -159,9 +159,9 @@ public class MagicMachine {
                 return BF4(input);
             case 5:
                 return BF5(input);
-
+             default:
+                return null; 
         }
-        return null;
     }
 
     public static String aWF(int functionNumber, String s1, String s2) {
@@ -176,9 +176,9 @@ public class MagicMachine {
                 return WF4(s1, s2);
             case 5:
                 return WF5(s1, s2);
-
+            default:
+                return null; 
         }
-        return null;
     }
 }
 //Amir Hossein Roosta
