@@ -1,94 +1,31 @@
-# Midterm-Project
-Midterm project of Advanced Programming Course Dr. Moghtadaee
+maual input:
+8 qmiqwnhwnrckeirepjgv 2 5 5 4 2 1 5 5
+        2 1 2 4 4 1 5 4
+        4 4 1 1 1 5 1 4
+        4 1 4 4 1 4 5 1
+        1 1 1 5 1 4 4 5
+        4 4 5 4 5 1 5 5
+        1 4 4 4 1 1 1 4
+        4 5 4 5 5 1 4 4
 
-
-
-برنامه‌ای بنویسید که ساختار یک ماشین جادویی و یک رشته را ورودی بگیرد، و سپس بگوید که ماشین جادویی چه بلایی سر رشته‌ی ورودی می‌آورد.
-
-![pic](interface.png)
-
-در شکل بالا **فلش‌های سیاه (تابع سیاه)** نشان‌دهنده‌ی تابع‌هایی هستند که یک رشته، ورودی می‌گیرند و یک رشته، خروجی می‌دهند و **فلش‌های سفید (تابع سفید)** نشان‌دهنده‌ی تابع‌هایی هستند که دو رشته، ورودی می‌گیرند و یک رشته، خروجی می‌دهند.
-
-ماشین جادویی همیشه یک مربع `n * n` است. نوع خانه‌های آن به شرح زیر هستند:
-
-**خانه‌ی سبز**: این خانه‌ها ضلع بالایی و چپی ماشین را تشکیل می‌دهند و حاوی یک تابع سیاه هستند و هر ورودی‌ای که از بالا یا چپ دریافت کنند را، بعد از اِعمال تابع بر روی آن، به خانه‌ی راستی و پایینی خود منتقل می‌کنند.
-
-**خانه‌ی زرد**: این خانه‌ها صرفاً در گوشه‌ی بالا-راست و پایین-چپ ماشین قرار دارند و حاوی یک تابع سیاه هستند و بعد از اعمال آن بر روی ورودی، آن را به خانه‌‌ی پایینی یا راستی خود می‌دهند.
-
-**خانه‌ی آبی**: این خانه‌ها، خانه‌های درونی ماشین را تشکیل می‌دهند. آن‌ها نیز حاوی **یک** تابع سیاه هستند. اما آن‌را بر روی دو ورودی خود اعمال می‌کنند. به این معنی که ورودی‌ای که از خانه‌ی بالایی می‌آید را، بعد از اعمال تابع، به خانه‌ی پایینی می‌دهند و ورودی‌ای که از چپ می‌آید، بعد از اعمال تابع بر روی آن، به خانه‌ی راستی.
-
-**خانه‌ی صورتی**: این خانه‌ها ضلع راستی و پایینی ماشین را تشکیل می‌دهند. آن‌ها حاوی یک تابع از نوع سفید هستند. تابع را بر روی ورودی‌ای که از خانه‌ی بالایی و چپی می‌گیرند اعمال می‌کنند و به خانه‌ی پایین یا راستی می‌دهند.
-
-ورودیِ کل ماشین به خانه‌ی **بالا-چپ** داده می‌شود و خروجیِ خانه‌ی **پایین-راست**، خروجیِ کل ماشین است.
-
-هنگام دادن ورودی به تابع‌های سفید، **ابتدا ورودی چپ و سپس ورودی بالا** داده می‌شود.
-
-
-لیست تابع‌ها به شرح زیر هستند:
-
-
-### تابع‌های سیاه:
-
-1. یک رشته ورودی می‌گیرد و آن را وارونه می‌کند.  
-   amir -> rima
-2. یک رشته ورودی می‌گیرد و هر کاراکتر آن را تکرار می‌کند.  
-   amir -> aammiirr
-3. یک رشته ورودی می‌گیرد و آن را تکرار می‌کند.  
-   amir -> amiramir
-4. یک رشته ورودی می‌گیرد و آن را یک کاراکتر به سمت راست شیفت می‌دهد.  
-   amir -> rami
-5. یک رشته ورودی می‌گیرد و هر کاراکتر آن را با کاراکتر هم‌شماره‌ی آن از انتهای حروف الفبا جابه‌جا می‌کند.  
-   amir -> znri
-
-### تابع‌های سفید:
-
-1. دو رشته ورودی می‌گیرد و حروف آن‌ها را لای هم قرار می‌دهد، حرف اول آن، حرف اول ورودی اول خواهد بود و اگر طول رشته‌ها با هم تفاوت کنند کاراکترهای رشته‌ی بلندتر را کنار هم قرار می‌دهند.  
-   amir , pegah -> apmeigrah
-2. رشته‌ی دوم را برعکس می‌کند و به انتهای رشته‌ی اول می‌چسباند.  
-   amir , pegah -> amirhagep
-3. در خروجی تابع، ابتدا حرف اول رشته‌ی اول، سپس حرف آخر رشته‌ی دوم، سپس حرف دوم رشته‌ی اول، سپس حرف یکی مانده به آخر رشته‌ی دوم و … را درج می‌کند.  
-   amir , pegah -> ahmaigrep
-4. اگر تعداد کاراکترهای رشته‌ی اول زوج بود، رشته‌ی اول را برمی‌گرداند، در غیر اینصورت رشته‌ی دوم را برمی‌گرداند.  
-   amir , pegah -> amir
-5. هر حرف رشته‌ی اول را با همان حرف از رشته‌‌ی دوم جمع می‌کند و به ۲۶ باقی‌مانده می‌گیرد. اگر طول رشته‌ها متفاوت بود، حرف‌هایی از رشته‌ی بلندتر را که متناظری ندارند، بدون تغییر به خروجی اضافه می‌کند.  
-   amir , pegah -> pqorh
-
-## ورودی
-
-در خط اول عدد n وارد می‌شود که مشخص می‌کند ماشین جادویی چند در چند است.
-خانه های ماشین جادویی را به طور رندوم با اعداد بین ۱ تا ۵ پرکنید.
-در خط بعدی یک رشته از حروف انگلیسی کوچک وارد می‌شود که طول آن بین ۵ تا ۲۰ حرف است.
-
-## خروجی
-
-
-خروجی برنامه‌ی شما باید یک رشته از حروف انگلیسی کوچک باشد که ماشین جادویی آن را تولید می‌کند.
-
-## مثال
-
-### ورودی نمونه ۱
-```
-8
-qmiqwnhwnrckeirepjgv
-```
-
-### اعداد تولید شده برای خانه های ماشین جادویی مثال بالا در زیر آمده است
-```
-2 5 5 4 2 1 5 5 
-2 1 2 4 4 1 5 4 
-4 4 1 1 1 5 1 4 
-4 1 4 4 1 4 5 1 
-1 1 1 5 1 4 4 5 
-4 4 5 4 5 1 5 5 
-1 4 4 4 1 1 1 4 
-4 5 4 5 5 1 4 4 
-
-```
-
-
-### خروجی نمونه ۱
-```
+output:
+qqmmiiqqwwnnhhwwnnrrcckkeeiirreeppjjggvv 2 jjnnrrjjddmmssddmmiixxppvvrriivvkkqqttee 5 qqmmiiqqwwnnhhwwnnrrcckkeeiirreeppjjggvv 5 vqqmmiiqqwwnnhhwwnnrrcckkeeiirreeppjjggv 4 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 2 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 eettttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjjjee 5 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 5 
+qqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvvv 2 vvvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqq 1 vvvvvvvvggggggggjjjjjjjjppppppppeeeeeeeerrrrrrrriiiiiiiieeeeeeeekkkkkkkkccccccccrrrrrrrrnnnnnnnnwwwwwwwwhhhhhhhhnnnnnnnnwwwwwwwwqqqqqqqqiiiiiiiimmmmmmmmqqqqqqqq 2 qvvvvvvvvggggggggjjjjjjjjppppppppeeeeeeeerrrrrrrriiiiiiiieeeeeeeekkkkkkkkccccccccrrrrrrrrnnnnnnnnwwwwwwwwhhhhhhhhnnnnnnnnwwwwwwwwqqqqqqqqiiiiiiiimmmmmmmmqqqqqqq 4 qqvvvvvvvvggggggggjjjjjjjjppppppppeeeeeeeerrrrrrrriiiiiiiieeeeeeeekkkkkkkkccccccccrrrrrrrrnnnnnnnnwwwwwwwwhhhhhhhhnnnnnnnnwwwwwwwwqqqqqqqqiiiiiiiimmmmmmmmqqqqqq 4 qqqqqqmmmmmmmmiiiiiiiiqqqqqqqqwwwwwwwwnnnnnnnnhhhhhhhhwwwwwwwwnnnnnnnnrrrrrrrrcccccccckkkkkkkkeeeeeeeeiiiiiiiirrrrrrrreeeeeeeeppppppppjjjjjjjjggggggggvvvvvvvvqq 1 jjjjjjnnnnnnnnrrrrrrrrjjjjjjjjddddddddmmmmmmmmssssssssddddddddmmmmmmmmiiiiiiiixxxxxxxxppppppppvvvvvvvvrrrrrrrriiiiiiiivvvvvvvvkkkkkkkkqqqqqqqqtttttttteeeeeeeejj 5 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 4 
+vqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvv 4 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 4 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 1 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 eettttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjjjee 5 eejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqttttee 1 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 4 
+vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 4 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 vvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqv 4 vvvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqq 4 qqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvvv 1 vqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvv 4 ejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttteee 5 vevjgjgjgjgnjnjnjnjrprprprpjejejejedrdrdrdrmimimimisesesesedkdkdkdkmcmcmcmciriririrxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 1 
+vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 1 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 eettttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjjjee 5 eejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqttttee 1 eeejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttte 4 eeeejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttt 4 ziznpspstwtaaeaeswsasusubdbvwbwbhmhgdpdpzlzufjfjxbxhznznvjvuslslfyfhmwmwscsykbkbrirxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 5 
+vvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqv 4 vvvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqq 4 eeeettttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjjj 5 jeeeettttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjj 4 qvvvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqq 5 qqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvvvq 1 jjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttteeeej 5 iriacfcjknkjjnjhvzvmegemtvtyzezntytolxlmwiwjuyueswsyqeqvdrdpngnvpipxcmcplvlcofokrirxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 5 
+vqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvv 1 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 4 vvvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggv 4 vvvvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjgggg 4 ggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvvvv 1 vvvvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjgggg 1 ggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvvvv 1 iriacfcjknkjjnjhvzvmegemtvtyzezntytolxlmwiwjuyueswsyqeqvdrdpngnvpipxcmcplvlcofokrirxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 4 
+null 4 null 5 null 4 null 5 null 5 null 1 null 4 null 4 
+qqmmiiqqwwnnhhwwnnrrcckkeeiirreeppjjggvv 2 qqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvvv 2 vqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvv 4 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 4 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 vvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqv 4 vqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvv 1 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 4 
+jjnnrrjjddmmssddmmiixxppvvrriivvkkqqttee 5 eettqqkkvviirrvvppxxiimmddssmmddjjrrnnjj 1 jeettqqkkvviirrvvppxxiimmddssmmddjjrrnnj 4 jnnrrjjddmmssddmmiixxppvvrriivvkkqqtteej 1 jeettqqkkvviirrvvppxxiimmddssmmddjjrrnnj 1 jjeettqqkkvviirrvvppxxiimmddssmmddjjrrnn 4 njjeettqqkkvviirrvvppxxiimmddssmmddjjrrn 4 iezuujfccwsddqyhhlrlltkvvztkkzoiizqwweierrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 5 
+qqmmiiqqwwnnhhwwnnrrcckkeeiirreeppjjggvv 5 qqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvvv 2 vvvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqq 1 qvvvvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqq 4 qqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvvvvq 1 jjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttteeeej 5 jjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttteeee 4 iezuujfccwsddqyhhlrlltkvvztkkzoiizqwweierrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 4 
+vqqmmiiqqwwnnhhwwnnrrcckkeeiirreeppjjggv 4 vvqqmmiiqqwwnnhhwwnnrrcckkeeiirreeppjjgg 4 ggjjppeerriieekkccrrnnwwhhnnwwqqiimmqqvv 1 vggjjppeerriieekkccrrnnwwhhnnwwqqiimmqqv 4 ettqqkkvviirrvvppxxiimmddssmmddjjrrnnjje 5 eettqqkkvviirrvvppxxiimmddssmmddjjrrnnjj 4 jeettqqkkvviirrvvppxxiimmddssmmddjjrrnnj 4 ridnnzvmmrnllhpccagiibshhcwcclalliznnrvnrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 5 
+vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 2 vvvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggv 4 vggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvvv 1 vvvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggv 1 vggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvvv 1 ettttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjjjeee 5 eeejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttte 1 vmhwwiezzeaccyglljpllevttoiuudsoolczzdhvzzkzzzhzzztzzzdzzzizzzmzzzkzzztzzzwzzzoz 5 
+vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 1 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 1 eejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqttttee 5 eeejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttte 4 eeeejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttt 4 ttttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjjjeeee 1 eeeejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttt 1 vemehewewjijejzjznenancncryrgrlrljjjpjljldedvdtdtmomimumusdsssosodldcdzdzmdmhmvmzizikizizxzxhxzxzpzptpzpzvzvdvzvzrzrirzrzizimizizvzvkvzvzkzktkzkzqzqwqzqztztotzt 1 
+eettttqqqqkkkkvvvviiiirrrrvvvvppppxxxxiiiimmmmddddssssmmmmddddjjjjrrrrnnnnjjjjee 5 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 5 vvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggvv 1 eejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqttttee 5 eeejjjjnnnnrrrrjjjjddddmmmmssssddddmmmmiiiixxxxppppvvvvrrrriiiivvvvkkkkqqqqtttte 4 vvvqqqqmmmmiiiiqqqqwwwwnnnnhhhhwwwwnnnnrrrrcccckkkkeeeeiiiirrrreeeeppppjjjjggggv 5 vggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvvv 1 vemehewewjijejzjznenancncryrgrlrljjjpjljldedvdtdtmomimumusdsssosodldcdzdzmdmhmvmzizikizizxzxhxzxzpzptpzpzvzvdvzvzrzrirzrzizimizizvzvkvzvzkzktkzkzqzqwqzqztztotzt 4 
+vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 5 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 4 vvggggjjjjppppeeeerrrriiiieeeekkkkccccrrrrnnnnwwwwhhhhnnnnwwwwqqqqiiiimmmmqqqqvv 4 vevjgjgjgjgnjnjnjnjrprprprpjejejejedrdrdrdrmimimimisesesesedkdkdkdkmcmcmcmciriririrxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 1 ziznpspstwtaaeaeswsasusubdbvwbwbhmhgdpdpzlzufjfjxbxhznznvjvuslslfyfhmwmwscsykbkbrirxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 5 iriacfcjknkjjnjhvzvmegemtvtyzezntytolxlmwiwjuyueswsyqeqvdrdpngnvpipxcmcplvlcofokrirxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 5 iriacfcjknkjjnjhvzvmegemtvtyzezntytolxlmwiwjuyueswsyqeqvdrdpngnvpipxcmcplvlcofokrirxnxnxnxnpwpwpwpwvhvhvhvhrnrnrnrniwiwiwiwvqvqvqvqkikikikiqmqmqmqmtqtqtqtqeveve 4 null 4 
 vemehewewjijejzjznenancncryrgrlrljjjpjljldedvdtdtmomimumusdsssosodldcdzdzmdmhmvmzizikizizxzxhxzxzpzptpzpzvzvdvzvzrzrirzrzizimizizvzvkvzvzkzktkzkzqzqwqzqztztotzt
-```
 
-
+final answer:
+vemehewewjijejzjznenancncryrgrlrljjjpjljldedvdtdtmomimumusdsssosodldcdzdzmdmhmvmzizikizizxzxhxzxzpzptpzpzvzvdvzvzrzrirzrzizimizizvzvkvzvzkzktkzkzqzqwqzqztztotzt
