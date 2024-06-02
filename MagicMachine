@@ -189,5 +189,3 @@ public class MagicMachine {
         return magicMachine;
     }
 }
-
-
