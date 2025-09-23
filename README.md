@@ -1,193 +1,159 @@
-import java.util.Random;
-import java.util.Scanner;
+Midterm project of **Advanced Programming Course – Dr. Moghtadaee**
 
-public class MagicMachine {
+---
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        scanner.nextLine();
-        String inputString = scanner.nextLine();
-        int[][] magicMachine = generateMagicMachine(n);
+## Problem Statement
 
-        String outputString = processMagicMachine(magicMachine, inputString);
-        System.out.println(outputString);
-    }
+Write a program that takes the structure of a **magic machine** and a string as input, and then outputs the result of applying the machine to the given string.
 
-    private static String processMagicMachine(int[][] magicMachine, String inputString) {
-        String[][] intermediateResults = new String[magicMachine.length][magicMachine.length];
-        intermediateResults[0][0] = inputString;
+In the figure below:
 
-        for (int i = 0; i < magicMachine.length; i++) {
-            for (int j = 0; j < magicMachine.length; j++) {
-                if (intermediateResults[i][j] != null) {
-                    switch (magicMachine[i][j]) {
-                        case 1:
-                            if (i < magicMachine.length - 1) {
-                                intermediateResults[i + 1][j] = reverseString(intermediateResults[i][j]);
-                            }
-                            if (j < magicMachine.length - 1) {
-                                intermediateResults[i][j + 1] = reverseString(intermediateResults[i][j]);
-                            }
-                            break;
-                        case 2:
-                            if (i < magicMachine.length - 1) {
-                                intermediateResults[i + 1][j] = duplicateCharacters(intermediateResults[i][j]);
-                            }
-                            if (j < magicMachine.length - 1) {
-                                intermediateResults[i][j + 1] = duplicateCharacters(intermediateResults[i][j]);
-                            }
-                            break;
-                        case 3:
-                            if (i < magicMachine.length - 1) {
-                                intermediateResults[i + 1][j] = duplicateString(intermediateResults[i][j]);
-                            }
-                            if (j < magicMachine.length - 1) {
-                                intermediateResults[i][j + 1] = duplicateString(intermediateResults[i][j]);
-                            }
-                            break;
-                        case 4:
-                            if (i < magicMachine.length - 1) {
-                                intermediateResults[i + 1][j] = shiftRight(intermediateResults[i][j]);
-                            }
-                            if (j < magicMachine.length - 1) {
-                                intermediateResults[i][j + 1] = shiftRight(intermediateResults[i][j]);
-                            }
-                            break;
-                        case 5:
-                            if (i < magicMachine.length - 1) {
-                                intermediateResults[i + 1][j] = swapCharacters(intermediateResults[i][j]);
-                            }
-                            if (j < magicMachine.length - 1) {
-                                intermediateResults[i][j + 1] = swapCharacters(intermediateResults[i][j]);
-                            }
-                            break;
-                        default:
-                            if (i > 0 && j > 0) {
-                                switch (magicMachine[i][j]) {
-                                    case 1:
-                                        if (j < magicMachine.length - 1) {
-                                            intermediateResults[i][j + 1] = interleaveStrings(intermediateResults[i][j - 1], intermediateResults[i - 1][j]);
-                                        }
-                                        break;
-                                    case 2:
-                                        if (j < magicMachine.length - 1) {
-                                            intermediateResults[i][j + 1] = concatReverse(intermediateResults[i][j - 1], intermediateResults[i - 1][j]);
-                                        }
-                                        break;
-                                    case 3:
-                                        if (j < magicMachine.length - 1) {
-                                            intermediateResults[i][j + 1] = interleaveAlternating(intermediateResults[i][j - 1], intermediateResults[i - 1][j]);
-                                        }
-                                        break;
-                                    case 4:
-                                        if (j < magicMachine.length - 1) {
-                                            intermediateResults[i][j + 1] = evenLengthFirst(intermediateResults[i][j - 1], intermediateResults[i - 1][j]);
-                                        }
-                                        break;
-                                    case 5:
-                                        if (j < magicMachine.length - 1) {
-                                            intermediateResults[i][j + 1] = addModulo26(intermediateResults[i][j - 1], intermediateResults[i - 1][j]);
-                                        }
-                                        break;
-                                }
-                            }
-                    }
-                }
-            }
-        }
-        return intermediateResults[magicMachine.length - 1][magicMachine.length - 1];
-    }
-    private static String reverseString(String str) {
-        return new StringBuilder(str).reverse().toString();
-    }
+<div align="center">
 
-    private static String duplicateCharacters(String str) {
-        StringBuilder sb = new StringBuilder();
-        for (char c : str.toCharArray()) {
-            sb.append(c).append(c);
-        }
-        return sb.toString();
-    }
+<img src="1.png" alt="" width="65%"/>
 
-    private static String duplicateString(String str) {
-        return str + str;
-    }
-
-    private static String shiftRight(String str) {
-        return str.charAt(str.length() - 1) + str.substring(0, str.length() - 1);
-    }
-
-    private static String swapCharacters(String str) {
-        StringBuilder sb = new StringBuilder();
-        for (char c : str.toCharArray()) {
-            sb.append((char) ('z' - (c - 'a')));
-        }
-        return sb.toString();
-    }
-
-    private static String interleaveStrings(String str1, String str2) {
-        StringBuilder sb = new StringBuilder();
-        int i = 0, j = 0;
-        while (i < str1.length() || j < str2.length()) {
-            if (i < str1.length()) {
-                sb.append(str1.charAt(i++));
-            }
-            if (j < str2.length()) {
-                sb.append(str2.charAt(j++));
-            }
-        }
-        return sb.toString();
-    }
-
-    private static String concatReverse(String str1, String str2) {
-        return str1 + new StringBuilder(str2).reverse().toString();
-    }
-
-    private static String interleaveAlternating(String str1, String str2) {
-        StringBuilder sb = new StringBuilder();
-        int i = 0, j = str2.length() - 1;
-        while (i < str1.length() || j >= 0) {
-            if (i < str1.length()) {
-                sb.append(str1.charAt(i++));
-            }
-            if (j >= 0) {
-                sb.append(str2.charAt(j--));
-            }
-        }
-        return sb.toString();
-    }
-
-    private static String evenLengthFirst(String str1, String str2) {
-        return (str1.length() % 2 == 0) ? str1 : str2;
-    }
-
-    private static String addModulo26(String str1, String str2) {
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        while (i < str1.length() || i < str2.length()) {
-            if (i < str1.length() && i < str2.length()) {
-                sb.append((char) (((str1.charAt(i) - 'a') + (str2.charAt(i) - 'a')) % 26 + 'a'));
-            } else if (i < str1.length()) {
-                sb.append(str1.charAt(i));
-            } else {
-                sb.append(str2.charAt(i));
-            }
-            i++;
-        }
-        return sb.toString();
-    }
-
-    private static int[][] generateMagicMachine(int n) {
-        Random random = new Random();
-        int[][] magicMachine = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                magicMachine[i][j] = random.nextInt(5) + 1;
-            }
-        }
-        return magicMachine;
-    }
-}
+</div>
 
 
+* **Black arrows (black functions)** represent functions that take one string as input and return one string as output.
+* **White arrows (white functions)** represent functions that take two strings as input and return one string as output.
+
+The magic machine is always a square of size `n × n`. The types of its cells are as follows:
+
+* **Green cells**:
+
+  * Located on the **top** and **left** edges of the machine.
+  * Contain a black function.
+  * Any input they receive (from the top or left) will be transformed by the function and passed to their right and bottom neighbors.
+
+* **Yellow cells**:
+
+  * Located at the **top-right** and **bottom-left** corners.
+  * Contain a black function.
+  * Transform the input and pass it to their bottom or right neighbor.
+
+* **Blue cells**:
+
+  * Located inside the machine.
+  * Contain **one black function**.
+  * Apply the function on both inputs:
+
+    * Input from the top → apply function → pass to bottom neighbor.
+    * Input from the left → apply function → pass to right neighbor.
+
+* **Pink cells**:
+
+  * Located on the **right** and **bottom** edges.
+  * Contain a **white function**.
+  * Apply the function on two inputs (from the left and from the top).
+  * The result is passed downwards or rightwards.
+
+The **input string** is fed into the **top-left cell**, and the **output of the bottom-right cell** is considered the final output of the whole machine.
+
+⚠️ **Important**: For white functions, the **left input comes first**, and the **top input comes second**.
+
+---
+
+## Functions
+
+### Black functions (operate on one string):
+
+1. Reverse the string.
+
+   ```
+   amir → rima
+   ```
+2. Repeat each character.
+
+   ```
+   amir → aammiirr
+   ```
+3. Repeat the whole string.
+
+   ```
+   amir → amiramir
+   ```
+4. Shift characters one position to the right.
+
+   ```
+   amir → rami
+   ```
+5. Replace each character with its opposite in the alphabet.
+
+   ```
+   amir → znri
+   ```
+
+---
+
+### White functions (operate on two strings):
+
+1. Interleave the characters of the two strings.
+
+   ```
+   amir, pegah → apmeigrah
+   ```
+2. Reverse the second string and append it to the first.
+
+   ```
+   amir, pegah → amirhagep
+   ```
+3. Alternate between the first string (left to right) and the second string (right to left).
+
+   ```
+   amir, pegah → ahmaigrep
+   ```
+4. If the length of the first string is even → return the first string, otherwise return the second.
+
+   ```
+   amir, pegah → amir
+   ```
+5. Add characters of both strings modulo 26. If lengths differ, append the extra characters unchanged.
+
+   ```
+   amir, pegah → pqorh
+   ```
+
+---
+
+## Input
+
+* First line: integer `n`, the size of the magic machine.
+* The machine’s cells are randomly filled with numbers between `1` and `5` (representing function IDs).
+* Second line: a lowercase English string of length **between 5 and 20**.
+
+---
+
+## Output
+
+* A string of lowercase English letters: the final output of the magic machine.
+
+---
+
+## Example
+
+### Input
+
+```
+8
+qmiqwnhwnrckeirepjgv
+```
+
+### Randomly generated machine
+
+```
+2 5 5 4 2 1 5 5 
+2 1 2 4 4 1 5 4 
+4 4 1 1 1 5 1 4 
+4 1 4 4 1 4 5 1 
+1 1 1 5 1 4 4 5 
+4 4 5 4 5 1 5 5 
+1 4 4 4 1 1 1 4 
+4 5 4 5 5 1 4 4 
+```
+
+### Output
+
+```
+vemehewewjijejzjznenancncryrgrlrljjjpjljldedvdtdtmomimumusdsssosodldcdzdzmdmhmvmzizikizizxzxhxzxzpzptpzpzvzvdvzvzrzrirzrzizimizizvzvkvzvzkzktkzkzqzqwqzqztztotzt
+```
